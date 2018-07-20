@@ -73,6 +73,7 @@ setup(
             'coverage',
             'pytest>=2.8',
             'pytest-cov>=2.4.0',
+            'tox>=2.0',
         ],
     },
 )

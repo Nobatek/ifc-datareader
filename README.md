@@ -1,5 +1,15 @@
 # ifc-datareader
 
+[![Build status](
+  https://img.shields.io/travis/Nobatek/ifc-datareader/master.svg)](
+    https://travis-ci.org/Nobatek/ifc-datareader)
+[![Coverage Status](
+  https://coveralls.io/repos/github/Nobatek/ifc-datareader/badge.svg?branch=master)](
+    https://coveralls.io/github/Nobatek/ifc-datareader?branch=master)
+[![Codacy Badge](
+  https://api.codacy.com/project/badge/Grade/a6df579064644efe8f0a4170dfa79702)](
+    https://www.codacy.com/app/davidfrederique/ifc-datareader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nobatek/ifc-datareader&amp;utm_campaign=Badge_Grade)
+
 ## About
 An IFC file reader, using [IfcOpenShell](http://ifcopenshell.org/python.html).
 

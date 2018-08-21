@@ -2,6 +2,10 @@
 
 import pytest
 
+from functools import reduce
+
+import ifcopenshell
+
 from ifc_datareader import IfcDataReader, IfcObjectEntity, IfcSchema
 
 
@@ -118,3 +122,21 @@ class TestIfcDataReader:
         # load existing file with no project entity: type error
         with pytest.raises(TypeError):
             IfcDataReader(ifc_filepath)
+
+    # def test_ifc_datareader_raw(self, ifc_filepath):
+    #
+    #     data_reader = IfcDataReader(ifc_filepath)
+    #     for wall in data_reader.read_walls():
+    #         print('\nWALL: {}'.format(wall))
+    #         print('PARENT: {}'.format(wall.parent))
+    #         for obj in wall.kids:
+    #             print('Object: {}'.format(obj))
+    #         # properties = reduce(
+    #         #     lambda x, y: x+y,
+    #         #     map(lambda x: x.properties, wall.property_sets))
+    #         # for pty in properties:
+    #         #     print('Property: {}'.format(pty))
+    #         for pset in wall.property_sets:
+    #             print('Pset: {}'.format(pset))
+    #             for pty in pset.properties:
+    #                 print('\t{}'.format(pty.value_type_name))

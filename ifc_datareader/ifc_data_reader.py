@@ -148,6 +148,15 @@ class IfcDataReader():
         """
         return self._read_entities('IfcZone')
 
+
+    def read_walls(self):
+        """Get a tuple of all 'IfcWall' and 'IfcWallStandardCase' entities in
+        the file.
+        :return tuple: All IfcObjectEntity instances found.
+        """
+        return self._read_entities('IfcWall') +\
+            self._read_entities('IfcWallStandardCase')
+
     def read_entity(self, entity_name, *, parent_entity=None):
         """Get a tuple of all `entity_name` entities in the file,
         having `parent_entity` as family ascendant (if defined).

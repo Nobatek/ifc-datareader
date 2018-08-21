@@ -61,6 +61,10 @@ def ifc_filepath(request):
     """Return an IFC file path."""
     return _build_filepath(request.param)
 
+@pytest.fixture(params=['20160125RME_2010_Trapelo_const-E20-F.ifc'])
+def ifc_filepath2(request):
+    """Return an IFC file path."""
+    return _build_filepath(request.param)
 
 @pytest.fixture
 def sample_ifcos():

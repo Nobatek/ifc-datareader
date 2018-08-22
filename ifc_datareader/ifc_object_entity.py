@@ -205,7 +205,8 @@ class IfcObjectEntity(IfcBaseEntity):
             if self._raw.is_a('IfcZone'):
                 entity_relations = self._raw.IsGroupedBy
             elif self._raw.is_a('IfcWall'):
-                return map(lambda x: x.RelatingSpace, self._raw.ProvidesBoundaries)
+                return map(lambda x: x.RelatingSpace,
+                           self._raw.ProvidesBoundaries)
             else:
                 entity_relations = self._raw.IsDecomposedBy
             # Now retrieve all `IfcObjectDefinition` from each `RelatedObjects`

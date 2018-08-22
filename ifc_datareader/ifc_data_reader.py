@@ -148,7 +148,6 @@ class IfcDataReader():
         """
         return self._read_entities('IfcZone')
 
-
     def read_walls(self):
         """Get a tuple of all 'IfcWall' and 'IfcWallStandardCase' entities in
         the file.

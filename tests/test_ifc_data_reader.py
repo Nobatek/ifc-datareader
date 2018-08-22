@@ -2,10 +2,6 @@
 
 import pytest
 
-from functools import reduce
-
-import ifcopenshell
-
 from ifc_datareader import IfcDataReader, IfcObjectEntity, IfcSchema
 
 
@@ -130,11 +126,11 @@ class TestIfcDataReader:
         assert isinstance(walls, tuple)
         for wall in walls:
             assert wall.type_name in ['IfcWall', 'IfcWallStandardCase']
-            #print('\nWALL: {}'.format(wall))
+            # print('\nWALL: {}'.format(wall))
             assert wall.parent.type_name == 'IfcBuildingStorey'
-            #print('PARENT: {}'.format(wall.parent))
+            # print('PARENT: {}'.format(wall.parent))
             for kid in wall.kids:
-                #print('Object: {}'.format(obj))
+                # print('Object: {}'.format(obj))
                 assert kid.type_name == 'IfcSpace'
             # for pset in wall.property_sets:
             #     print('Pset: {}'.format(pset))

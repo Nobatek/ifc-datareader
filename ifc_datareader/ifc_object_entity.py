@@ -195,6 +195,7 @@ class IfcObjectEntity(IfcBaseEntity):
         inverse returns a set of [1:?] `IfcRelDecomposes` (or inherited
         relation), which have a `RelatedObjects` attribute.
         If entity is an `IfcZone` instance, `IsGroupedBy` inverse is used.
+        If entity is an `IfcWall` instance, `RelProvidesBoundaries` is used.
 
         :return tuple: The list of related objects found.
             Objects are `IfcObjectDefinition` instances (do not forget later

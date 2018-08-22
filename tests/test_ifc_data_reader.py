@@ -123,20 +123,20 @@ class TestIfcDataReader:
         with pytest.raises(TypeError):
             IfcDataReader(ifc_filepath)
 
-    # def test_ifc_datareader_raw(self, ifc_filepath):
-    #
-    #     data_reader = IfcDataReader(ifc_filepath)
-    #     for wall in data_reader.read_walls():
-    #         print('\nWALL: {}'.format(wall))
-    #         print('PARENT: {}'.format(wall.parent))
-    #         for obj in wall.kids:
-    #             print('Object: {}'.format(obj))
-    #         # properties = reduce(
-    #         #     lambda x, y: x+y,
-    #         #     map(lambda x: x.properties, wall.property_sets))
-    #         # for pty in properties:
-    #         #     print('Property: {}'.format(pty))
-    #         for pset in wall.property_sets:
-    #             print('Pset: {}'.format(pset))
-    #             for pty in pset.properties:
-    #                 print('\t{}'.format(pty.value_type_name))
+    def test_ifc_datareader_walls(self, ifc_filepath):
+
+        data_reader = IfcDataReader(ifc_filepath)
+        walls = data_reader.read_walls()
+        assert isinstance(walls, tuple)
+        for wall in walls:
+            assert wall.type_name in ['IfcWall', 'IfcWallStandardCase']
+            #print('\nWALL: {}'.format(wall))
+            assert wall.parent.type_name == 'IfcBuildingStorey'
+            #print('PARENT: {}'.format(wall.parent))
+            for kid in wall.kids:
+                #print('Object: {}'.format(obj))
+                assert kid.type_name == 'IfcSpace'
+            # for pset in wall.property_sets:
+            #     print('Pset: {}'.format(pset))
+            #     for pty in pset.properties:
+            #         print('\t{}'.format(pty.value_type_name))

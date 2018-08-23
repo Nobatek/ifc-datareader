@@ -119,7 +119,6 @@ class TestIfcDataReader:
         with pytest.raises(TypeError):
             IfcDataReader(ifc_filepath)
 
-
     def test_ifc_datareader_windows(self, ifc_filepath2):
         data_reader = IfcDataReader(ifc_filepath2)
         windows = data_reader.read_windows()
@@ -143,7 +142,7 @@ class TestIfcDataReader:
             print([rel.Location for rel in
                    window.get_relations('ObjectPlacement')
                    if rel.is_a('IfcAxis2Placement3D')])
-            #print('\tKids: {}'.format(window.kids))
+            # print('\tKids: {}'.format(window.kids))
 #            print('\tPset: {}'.format(window.property_sets))
             # assert window.parent.type_name == 'IfcBuildingStorey'
             # print('PARENT: {}'.format(wall.parent))
@@ -154,7 +153,6 @@ class TestIfcDataReader:
             #     print('Pset: {}'.format(pset))
             #     for pty in pset.properties:
             #         print('\t{}'.format(pty.value_type_name))
-
 
     def test_ifc_datareader_walls(self, ifc_filepath):
 

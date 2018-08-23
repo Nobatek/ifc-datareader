@@ -91,6 +91,11 @@ class IfcBaseEntity(abc.ABC):
         """Get the entity's IFC schema metadata (its specification)."""
         return self._schema.get_entity(self.type_name)
 
+    def get_attribute(self, name):
+        """Get a value in the definition of the base entity, given the
+        attribute name"""
+        return self.info.get(name)
+
     @staticmethod
     def _print_debug_warning(raw_data, *, item=''):
         # Print some debug alerts about an `ifcopenshell.entity_instance`.

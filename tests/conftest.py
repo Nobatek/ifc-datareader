@@ -63,6 +63,7 @@ def ifc_filepath(request):
 
 
 @pytest.fixture(params=['20160125RME_2010_Trapelo_const-E20-F.ifc'])
+#@pytest.fixture(params=['NUIG.ifc'])
 def ifc_filepath2(request):
     """Return an IFC file path."""
     return _build_filepath(request.param)

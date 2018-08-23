@@ -114,6 +114,10 @@ class IfcObjectEntity(IfcBaseEntity):
             self._quantities = self._load_quantities()
         return self._quantities
 
+    def get_relations(self, relation):
+        """Get a tuple of relations identifier by the relation name"""
+        return self._raw.__getattr__(relation)
+
     def _load_object_type(self):
         """Try to get the object type description.
 

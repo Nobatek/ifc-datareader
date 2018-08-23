@@ -173,3 +173,11 @@ class IfcDataReader():
         :return tuple: All IfcObjectEntity instances found.
         """
         return self._read_entities(entity_name, parent_entity=parent_entity)
+
+    def get_object(self, entity):
+        """Simple conversion method: get an IfcObjectEntity from a raw entity
+
+        :param raw entity entity: An IFC entity
+        :return IfcObjectEntity: The converted entity
+        """
+        return IfcObjectEntity(entity, schema=self.ifc_schema)

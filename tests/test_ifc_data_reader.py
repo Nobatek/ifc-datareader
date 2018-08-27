@@ -119,41 +119,6 @@ class TestIfcDataReader:
         with pytest.raises(TypeError):
             IfcDataReader(ifc_filepath)
 
-    def test_ifc_datareader_windows(self, ifc_filepath2):
-        data_reader = IfcDataReader(ifc_filepath2)
-        windows = data_reader.read_windows()
-        assert isinstance(windows, tuple)
-        for window in windows:
-            assert window.type_name in ['IfcWindow']
-            print('\nWindow: {}'.format(window))
-#            print('\tDimensions: {}\t{}'.format(
-#                window.get_attribute('OverallHeight'),
-#                window.get_attribute('OverallWidth')))
-            print('\tParent: ')
-            print([rel.RelatingStructure for rel in
-                   window.get_relations('ContainedInStructure')])
-            print('\tVoids: ')
-            for rel in window.get_relations('FillsVoids'):
-                opening = IfcObjectEntity(
-                    rel.RelatingOpeningElement, schema=data_reader.ifc_schema)
-                print(opening)
-                print(opening.parent)
-            print('\tReferencedIn: ')
-            print([rel.Location for rel in
-                   window.get_relations('ObjectPlacement')
-                   if rel.is_a('IfcAxis2Placement3D')])
-            # print('\tKids: {}'.format(window.kids))
-#            print('\tPset: {}'.format(window.property_sets))
-            # assert window.parent.type_name == 'IfcBuildingStorey'
-            # print('PARENT: {}'.format(wall.parent))
-            # for kid in window.kids:
-            #     # print('Object:  {}'.format(obj))
-            #     assert kid.type_name == 'IfcSpace'
-            # for pset in wall.property_sets:
-            #     print('Pset: {}'.format(pset))
-            #     for pty in pset.properties:
-            #         print('\t{}'.format(pty.value_type_name))
-
     def test_ifc_datareader_walls(self, ifc_filepath):
 
         data_reader = IfcDataReader(ifc_filepath)
@@ -168,6 +133,67 @@ class TestIfcDataReader:
                 # print('Object: {}'.format(obj))
                 assert kid.type_name == 'IfcSpace'
             # for pset in wall.property_sets:
+            #     print('Pset: {}'.format(pset))
+            #     for pty in pset.properties:
+            #         print('\t{}'.format(pty.value_type_name))
+
+    def test_ifc_datareader_slabs(self, ifc_filepath2):
+
+        data_reader = IfcDataReader(ifc_filepath2)
+        slabs = data_reader.read_slabs()
+        cnt = 10
+        assert isinstance(slabs, tuple)
+        for slab in slabs:
+            assert slab.type_name in ['IfcSlab']
+            print('\nSLAB: {}'.format(slab))
+            print(slab.info['PredefinedType'])
+            assert slab.parent.type_name == 'IfcBuildingStorey'
+            print('PARENT: {}'.format(slab.parent))
+            for kid in slab.kids:
+                # print('Object: {}'.format(obj))
+                assert kid.type_name == 'IfcSpace'
+            for pty in slab.properties:
+                print(pty)
+            # for pset in slab.property_sets:
+            #     print('Pset: {}'.format(pset))
+            #     for pty in pset.properties:
+            #         print('\t{}'.format(pty.value_type_name))
+            cnt -= 1
+            if cnt == 0:
+                return
+
+    def test_ifc_datareader_windows(self, ifc_filepath2):
+        data_reader = IfcDataReader(ifc_filepath2)
+        windows = data_reader.read_windows()
+        assert isinstance(windows, tuple)
+        for window in windows:
+            assert window.type_name in ['IfcWindow']
+            # print('\nWindow: {}'.format(window))
+            # print('\tDimensions: {}\t{}'.format(
+            #     window.get_attribute('OverallHeight'),
+            #     window.get_attribute('OverallWidth')))
+            # print('\tParent: ')
+            # print([rel.RelatingStructure for rel in
+            #        window.get_relations('ContainedInStructure')])
+            # print('\tVoids: ')
+            # for rel in window.get_relations('FillsVoids'):
+            #     opening = IfcObjectEntity(
+            #         rel.RelatingOpeningElement,
+            #         schema=data_reader.ifc_schema)
+            #     print(opening)
+            #     print(opening.parent)
+            # print('\tReferencedIn: ')
+            # print([rel.Location for rel in
+            #        window.get_relations('ObjectPlacement')
+            #        if rel.is_a('IfcAxis2Placement3D')])
+            # print('\tKids: {}'.format(window.kids))
+            # print('\tPset: {}'.format(window.property_sets))
+            assert window.parent.type_name == 'IfcBuildingStorey'
+            # print('PARENT: {}'.format(window.parent))
+            for kid in window.kids:
+                # print('Object:  {}'.format(obj))
+                assert kid.type_name == 'IfcSpace'
+            # for pset in window.property_sets:
             #     print('Pset: {}'.format(pset))
             #     for pty in pset.properties:
             #         print('\t{}'.format(pty.value_type_name))

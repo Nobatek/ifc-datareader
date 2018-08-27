@@ -156,6 +156,12 @@ class IfcDataReader():
         return self._read_entities('IfcWall') +\
             self._read_entities('IfcWallStandardCase')
 
+    def read_slabs(self):
+        """Get a tuple of all `Slab` entities in the file.
+        :return tuple: All IfcObjectEntity instances found.
+        """
+        return self._read_entities('IfcSlab')
+
     def read_windows(self):
         """Get a tuple of all `IfcWindows` entities in
         the file.
